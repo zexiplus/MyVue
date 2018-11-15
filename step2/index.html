@@ -11,7 +11,9 @@
 <body>
     <div id="app">
         <h1>{{title}}</h1>
+        <h2>{{member.name}}</h2>
         <span v-text="message"></span>
+        <input id="myinput" v-model="title" />
     </div>
     <script>
         new MVVM({
@@ -19,7 +21,10 @@
             data() {
                 return {
                     title: 'My Vue',
-                    message: '123'
+                    message: '123',
+                    member: {
+                        name: 'float'
+                    }
                 }
             }
         })
