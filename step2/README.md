@@ -1,9 +1,22 @@
 # STEP2
 步骤2， 此章节在步骤1的基础上完善了compiler的逻辑功能
-* Compiler 编译器
-* MVVM 
+* MVVM
+* Compiler
 
 
+
+### MVVM
+
+- 传入el， data等 options参数
+
+  ```js
+  new MVVM({
+      el: '#app',
+      data() {...}
+  })
+  ```
+
+- 调用Complier构造函数, 编译dom
 
 
 
@@ -138,23 +151,3 @@ Compiler 编译器， 把传入的fragment
   ```
 
 
-
-
-
-
-
-
-
-
-### MVVM
-
-* 传入el， data等 options参数
-
-  ```js
-  new MVVM({
-      el: '#app',
-      data() {...}
-  })
-  ```
-
-* 调用Complier构造函数, 编译dom
