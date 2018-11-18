@@ -2,7 +2,7 @@
 步骤3， 此章节在步骤1, 2的基础上， 新增加 Observer类实现数据劫持
 * MVVM 
 * Compiler
-* Observer 
+* **Observer** 
 
 
 

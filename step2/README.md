@@ -1,7 +1,7 @@
 # STEP2
 步骤2， 此章节在步骤1的基础上完善了compiler的逻辑功能
 * MVVM
-* Compiler
+* **Compiler**
 
 
 

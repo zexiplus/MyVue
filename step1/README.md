@@ -1,7 +1,9 @@
 # STEP1
 步骤1， 此章节主要实现Complier编译器和MVVM构造函数的主要逻辑
+* **MVVM**
+
 * Compiler
-* MVVM
+
 
 
 
