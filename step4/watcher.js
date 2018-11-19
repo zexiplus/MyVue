@@ -22,7 +22,7 @@ class Watcher {
         let oldVal = this.value
         let newVal = this.getValue(this.expr)
         if (oldVal !== newVal) {
-            this.cb && this.cb()
+            this.cb && this.cb(newVal)
         }
     }
 }

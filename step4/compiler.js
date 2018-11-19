@@ -49,10 +49,10 @@ class Complier {
             // 去掉{{}} 保留 value
             let attrName = text.replace(reg, (...args) => {
                 // 对每个{{}}之类的表达式增加增加一个watcher,参数为vm实例, expr表达式, 更新回调函数
-                new Watcher(this.vm, args[1], () => {
+                new Watcher(this.vm, args[1], (value) => {
                     console.log('update???')
-                    let textValue = this.splitData(attrName, this.vm.$data)
-                    compileUtil.updateText(textValue, node, this.vm)
+                    
+                    compileUtil.updateText(value, node, this.vm)
                 })
                 return args[1]
             })
