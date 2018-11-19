@@ -50,7 +50,7 @@ class Complier {
             let attrName = text.replace(reg, (...args) => {
                 // 对每个{{}}之类的表达式增加增加一个watcher,参数为vm实例, expr表达式, 更新回调函数
                 new Watcher(this.vm, args[1], (value) => {
-                    console.log('update???')
+                    // console.log('update???')
                     
                     compileUtil.updateText(value, node, this.vm)
                 })
@@ -78,9 +78,10 @@ class Complier {
         // 把已v-指令存到一个数组中
         attrs = attrs.filter(this.isDirective)
         attrs.forEach((item) => {
-            let value = this.splitData(node.getAttribute(item), this.vm.$data)
+            let expr = node.getAttribute(item)
+            let value = this.splitData(expr, this.vm.$data)
             if (compileUtil[item]) {
-                compileUtil[item](value, node)
+                compileUtil[item](value, node, this.vm, expr)
             } else {
                 console.warn(`can't find directive ${item}`)
             }
@@ -128,12 +129,27 @@ class Complier {
 
 // 编译功能函数的集合单例
 const compileUtil = {
-    updateText(text, node, vm) {
+    updateText(text, node, vm, expr) {
         // console.log('compileUtil.updateText text is', text)
         node && (node.textContent = text)
     },
-    'v-model': function (value, node) {
+    //  在绑定有v-model节点的input上绑定事件, expr为v-model的表达式例如 'message.name'
+    'v-model': function (value, node, vm, expr) {
         node && (node.value = value)
+        node.addEventListener('input', (e) => {
+            this.setVal(vm.$data, expr, e.target.value)
+        })
+    },
+    // 解析vm.data上的v-model绑定的值
+    setVal(obj, expr, value) {
+        let arr = expr.split('.')
+        arr.reduce((prev, next) => {
+            if (arr.indexOf(next) == arr.length - 1) {
+                prev[next] = value
+            } else {
+                return prev[next]
+            }
+        }, obj)
     }
 }
 
